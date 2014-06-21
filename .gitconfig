@@ -1,0 +1,14 @@
+[core]
+    editor = vim
+[color]
+    ui = auto
+[alias]
+    aa = add --all
+    ap = add --patch
+    ca = commit --amend
+    ci = commit
+    co = checkout
+    st = status
+    last = log -1 HEAD
+    uncommit = reset --soft HEAD^
+    unstage = reset HEAD --
