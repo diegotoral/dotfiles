@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+require 'pathname'
+
+orig = Pathname.new(ARGV.first)
+dest = orig.dirname + ARGV.last
+system "mv #{orig} #{dest}"
