@@ -1,5 +1,16 @@
 #!/usr/bin/env ruby
 
+require 'uri'
+require 'optparse'
+
+tab = ''
+OptionParser.new do |opts|
+  opts.banner = "Usage: repo [options]"
+
+  opts.on('-i', '--issues', "Open repository on issues page") { |v| tab = 'issues' }
+  opts.on('-p', '--pull-requests', "Open repository on pull requests page") { |v| tab = 'pulls' }
+end.parse!
+
 origin = `git remote -v | grep fetch`
-url = origin.scan(/:(.*\/.*)\.git/).flatten
-system "open https:#{url[0]}"
+repository = origin.scan(/:(.*\/.*)\.git/).flatten
+system "open #{URI.join('https://github.com', "/#{repository[0]}/", tab)}"
