@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+require 'uri'
+
+origin = `git remote -v | grep fetch`
+repository = origin.scan(/:(.*\/.*)\.git/).flatten
+system "open #{URI.join('https://waffle.io', "/#{repository[0]}")}"
