@@ -16,9 +16,6 @@ ZSH_THEME="avit"
 # Case-sensitive completion must be off. _ and - will be interchangeable.
 HYPHEN_INSENSITIVE="true"
 
-# Command auto-correction.
-ENABLE_CORRECTION="true"
-
 # Display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
 
