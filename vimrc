@@ -32,10 +32,10 @@ set guioptions=                               " Disable all scrollbars
 
 " == KEY BINDINGS ==
 " Quick window movement
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+" nnoremap <C-J> <C-W><C-J>
+" nnoremap <C-K> <C-W><C-K>
+" nnoremap <C-L> <C-W><C-L>
+" nnoremap <C-H> <C-W><C-H>
 
 " == PLUGINS ==
 filetype off                                  " Force plugins to load correctly
@@ -43,6 +43,8 @@ set rtp+=~/.vim/bundle/Vundle.vim             " set the runtime path to include 
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'                 " Let Vundle manage Vundle
+
+Plugin 'christoomey/vim-tmux-navigator'
 
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
@@ -59,7 +61,7 @@ Plugin 'tpope/vim-sleuth'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-rails'
-Plugin 'tpope/vim-dispatch'
+Plugin 'tpope/vim-obsession'
 
 Plugin 'vim-ruby/vim-ruby'
 
@@ -68,20 +70,25 @@ Plugin 'easymotion/vim-easymotion'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'jparise/vim-graphql'
 Plugin 'kien/ctrlp.vim'
+Plugin 'tacahiroy/ctrlp-funky'
 Plugin 'kana/vim-textobj-user'
 Plugin 'mattn/emmet-vim'
 Plugin 'nelstrom/vim-textobj-rubyblock'
 Plugin 'posva/vim-vue'
-Plugin 'terryma/vim-multiple-cursors'
 Plugin 'valloric/youcompleteme'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'w0rp/ale'
 Plugin 'dkprice/vim-easygrep'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 
 Plugin 'dracula/vim'                          " The best color scheme ever
 
 " -- END PLUGINS --
 call vundle#end()
+
+" ~~ utisnips ~~
+let g:UltiSnipsExpandTrigger="<C-l>"
 
 " ~~ vim-vue ~~
 " Workaround for highlight randomly stop working
@@ -112,6 +119,8 @@ let g:ctrlp_custom_ignore = {
 \ 'link': 'some_bad_symbolic_links',
 \ }
 
+nnoremap <Leader>fu :CtrlPFunky<Cr>
+
 " Use The Silver Searcher
 if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor        " Use Ag over Grep
@@ -141,7 +150,8 @@ let g:dispatch_handlers =  ['tmux', 'screen', 'windows', 'x11', 'headless']
 
 " == COLOR SCHEME ==
 colorscheme dracula                                   " Use the best color scheme
-set guifont=Source\ Code\ Pro\ for\ Powerline:h11     " Use a better fontface
+set guifont=Fira\ Mono\ for\ Powerline:h11            " Use a better fontface
+" set guifont=Source\ Code\ Pro\ for\ Powerline:h11     " Use a better fontface
 
 " Quick fix for highligh issues of es6 code
 " source: https://github.com/dracula/vim/issues/23#issuecomment-360582872
