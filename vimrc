@@ -16,6 +16,7 @@ set autoindent                                " Saves a few keystrokes
 set splitbelow                                " Open splits to bottom
 set splitright                                " Open splits to right
 " set cursorline                              " Highlights current cursor line (slow)
+set relativenumber                            " Set line numbers relative to current one
 set smarttab
 
 let mapleader = ' '                           " Use space as leader
@@ -75,17 +76,24 @@ Plugin 'kana/vim-textobj-user'
 Plugin 'mattn/emmet-vim'
 Plugin 'nelstrom/vim-textobj-rubyblock'
 Plugin 'posva/vim-vue'
-Plugin 'valloric/youcompleteme'
+Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plugin 'sheerun/vim-polyglot'
 Plugin 'w0rp/ale'
 Plugin 'dkprice/vim-easygrep'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 
-Plugin 'dracula/vim'                          " The best color scheme ever
+" Plugin 'dracula/vim'                          " The best color scheme ever
+Plugin 'arcticicestudio/nord-vim'
 
 " -- END PLUGINS --
 call vundle#end()
+
+" Use deoplete
+let g:deoplete#enable_at_startup = 1
+
+" Autocomplete on Tab
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 " ~~ utisnips ~~
 let g:UltiSnipsExpandTrigger="<C-l>"
@@ -97,7 +105,7 @@ autocmd FileType vue syntax sync fromstart
 " ~~ Vim Airline ~~
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
-let g:airline_theme='dracula'
+let g:airline_theme='nord'
 
 " == NerdTree configuration ==
 let NERDTreeMinimalUI = 1                     " Disable help text
@@ -110,6 +118,7 @@ let g:nerdtree_tabs_open_on_console_startup = 1
 let g:NERDSpaceDelims = 1
 let g:NERDCommentEmptyLines = 1
 let g:NERDTrimTrailingWhitespace = 1
+let g:NERDDefaultAlign = 'left'
 
 " == Ctrlp ==
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
@@ -149,24 +158,9 @@ map <Leader>k <Plug>(easymotion-k)
 let g:dispatch_handlers =  ['tmux', 'screen', 'windows', 'x11', 'headless']
 
 " == COLOR SCHEME ==
-colorscheme dracula                                   " Use the best color scheme
+colorscheme nord                                   " Use the best color scheme
 set guifont=Fira\ Mono\ for\ Powerline:h11            " Use a better fontface
 " set guifont=Source\ Code\ Pro\ for\ Powerline:h11     " Use a better fontface
-
-" Quick fix for highligh issues of es6 code
-" source: https://github.com/dracula/vim/issues/23#issuecomment-360582872
-hi link jsModuleKeyword Identifier
-hi link jsVariableDef   Identifier
-hi link jsFuncArgs      Identifier
-hi link jsFuncCall      Function
-hi link jsObjectProp    Identifier
-hi link jsObjectKey     Label
-hi link jsObjectValue   Normal
-
-function! SynGroup()
-  let l:s = synID(line('.'), col('.'), 1)
-  echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
-endfun
 
 " == UNCATEGORIZED OR UKNOWN CONFIGURATION ==
 set completeopt+=menuone
@@ -210,3 +204,4 @@ set ignorecase
 set smartcase
 
 set updatetime=250
+highlight Normal ctermbg=None
