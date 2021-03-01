@@ -12,3 +12,9 @@
     last = log -1 HEAD
     uncommit = reset --soft HEAD^
     unstage = reset HEAD --
+[user]
+    name = Diego Toral
+    email = diegotoral@gmail.com
+
+[includeIf "gitdir:~/code/d3/*"]
+    path = ~/.config/git/d3.inc
