@@ -40,57 +40,54 @@ set guioptions=                               " Disable all scrollbars
 
 " == PLUGINS ==
 filetype off                                  " Force plugins to load correctly
-set rtp+=~/.vim/bundle/Vundle.vim             " set the runtime path to include Vundle and initialize
-call vundle#begin()
+call plug#begin()
 
-Plugin 'VundleVim/Vundle.vim'                 " Let Vundle manage Vundle
+Plug 'christoomey/vim-tmux-navigator'
 
-Plugin 'christoomey/vim-tmux-navigator'
+Plug 'scrooloose/nerdtree'
+Plug 'jistr/vim-nerdtree-tabs'
+Plug 'scrooloose/nerdcommenter'
 
-Plugin 'scrooloose/nerdtree'
-Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'scrooloose/nerdcommenter'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+Plug 'Raimondi/delimitMate'
+Plug 'Raimondi/vim_search_objects'
 
-Plugin 'Raimondi/delimitMate'
-Plugin 'Raimondi/vim_search_objects'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-obsession'
 
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-sleuth'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-endwise'
-Plugin 'tpope/vim-rails'
-Plugin 'tpope/vim-obsession'
+Plug 'vim-ruby/vim-ruby'
 
-Plugin 'vim-ruby/vim-ruby'
+Plug 'airblade/vim-gitgutter'
+Plug 'easymotion/vim-easymotion'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'jparise/vim-graphql'
+Plug 'kien/ctrlp.vim'
+Plug 'tacahiroy/ctrlp-funky'
+Plug 'kana/vim-textobj-user'
+Plug 'mattn/emmet-vim'
+Plug 'nelstrom/vim-textobj-rubyblock'
+Plug 'posva/vim-vue'
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'sheerun/vim-polyglot'
+Plug 'w0rp/ale'
+Plug 'dkprice/vim-easygrep'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
-Plugin 'airblade/vim-gitgutter'
-Plugin 'easymotion/vim-easymotion'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'jparise/vim-graphql'
-Plugin 'kien/ctrlp.vim'
-Plugin 'tacahiroy/ctrlp-funky'
-Plugin 'kana/vim-textobj-user'
-Plugin 'mattn/emmet-vim'
-Plugin 'nelstrom/vim-textobj-rubyblock'
-Plugin 'posva/vim-vue'
-Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plugin 'sheerun/vim-polyglot'
-Plugin 'w0rp/ale'
-Plugin 'dkprice/vim-easygrep'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-
-" Plugin 'dracula/vim'                          " The best color scheme ever
-Plugin 'arcticicestudio/nord-vim'
+" Plug 'dracula/vim'                          " The best color scheme ever
+Plug 'arcticicestudio/nord-vim'
 
 " -- END PLUGINS --
-call vundle#end()
+call plug#end()
 
 " Use deoplete
-let g:deoplete#enable_at_startup = 1
+" let g:deoplete#enable_at_startup = 1
 
 " Autocomplete on Tab
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
