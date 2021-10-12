@@ -1,5 +1,5 @@
 [core]
-    editor = vim
+    editor = nvim
 [color]
     ui = auto
 [alias]
@@ -15,6 +15,3 @@
 [user]
     name = Diego Toral
     email = diegotoral@gmail.com
-
-[includeIf "gitdir:~/code/d3/*"]
-    path = ~/.config/git/d3.inc
