@@ -4,3 +4,8 @@ translate () {
     lang="pt-br";
     wget -U "Mozilla/5.0" -qO - "http://translate.google.com/translate_a/t?client=t&text=$text&sl=auto&tl=$lang" | sed 's/\[\[\[\"//' | cut -d \" -f 1
 }
+
+# Copies file contents to clipboard
+copy () {
+  cat $1 | xclip -selection clipboard
+}
