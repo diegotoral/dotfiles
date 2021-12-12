@@ -1,5 +1,7 @@
 local g = vim.g
 
+require('gitsigns').setup()
+
 require('nvim-tree').setup {
   view = {
     width = 30
@@ -14,10 +16,10 @@ local parser_configs = require('nvim-treesitter.parsers').get_parser_configs()
 
 parser_configs.norg = {
   install_info = {
-    url = 'https://github.com/nvim-neorg/tree-sitter-norg',
-    files = { 'src/parser.c', 'src/scanner.cc' },
-    branch = 'main'
-  }
+    url = "https://github.com/nvim-neorg/tree-sitter-norg",
+    files = { "src/parser.c", "src/scanner.cc" },
+    branch = "main"
+  },
 }
 
 require('nvim-treesitter.configs').setup {
@@ -28,6 +30,13 @@ require('nvim-treesitter.configs').setup {
 
 local cmp = require('cmp')
 local luasnip = require('luasnip')
+
+-- Add additional capabilities supported by nvim-cmp
+-- local capabilities = vim.lsp.protocol.make_client_capabilities()
+-- capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+
+-- Set completeopt to have a better completion experience
+vim.o.completeopt = 'menuone,noselect'
 
 local has_words_before = function()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -44,8 +53,7 @@ cmp.setup {
   sources = {
     { name = 'buffer' },
     { name = 'treesitter' },
-    { name = 'luasnip' },
-    { name = 'neorg' }
+    { name = 'luasnip' }
   },
 
   mapping = {
@@ -76,28 +84,19 @@ cmp.setup {
 }
 
 require('lualine').setup {
-  options = {theme = 'rose-pine'}
+  options = { theme = 'rose-pine' },
+  extensions = { 'nvim-tree' }
 }
 
 require('auto-session').setup {
   pre_save_cmds = {'NvimTreeClose'}
 }
 
-require('neorg').setup {
-  load = {
-    ['core.defaults'] = {},
-    ['core.norg.concealer'] = {},
-    ['core.norg.dirman'] = {
-      config =  {
-        workspaces = {
-          my_workspace = '~/neorg'
-        }
-      }
-    },
-    ['core.norg.completion'] = {
-      config = {
-        engine = 'nvim-cmp'
-      }
-    }
-  }
-}
+-- local lspconfig = require('lspconfig')
+-- local lspcontainers = require('lspcontainers')
+--
+-- lspconfig.solargraph.setup({
+--   cmd = lspcontainers.command('solargraph'),
+--   capabilities = capabilities
+-- })
+

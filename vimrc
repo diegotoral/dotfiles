@@ -42,7 +42,10 @@ set guioptions=                               " Disable all scrollbars
 filetype off                                  " Force plugins to load correctly
 call plug#begin()
 
+Plug 'rose-pine/neovim'
 Plug 'christoomey/vim-tmux-navigator'
+
+Plug 'wakatime/vim-wakatime'
 
 Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
@@ -73,9 +76,9 @@ Plug 'kana/vim-textobj-user'
 Plug 'mattn/emmet-vim'
 Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'posva/vim-vue'
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'sheerun/vim-polyglot'
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 Plug 'dkprice/vim-easygrep'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -87,7 +90,7 @@ Plug 'arcticicestudio/nord-vim'
 call plug#end()
 
 " Use deoplete
-" let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_at_startup = 1
 
 " Autocomplete on Tab
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
@@ -102,11 +105,13 @@ autocmd FileType vue syntax sync fromstart
 " ~~ Vim Airline ~~
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
-let g:airline_theme='nord'
+let g:airline_theme='solarized'
 
 " == NerdTree configuration ==
 let NERDTreeMinimalUI = 1                     " Disable help text
 let NERDTreeDirArrows = 1                     " Display arrows for directories
+" nmap <leader>ne :NERDTreeToggle<cr>
+map <silent> <C-n> :NERDTreeToggle<CR>
 
 " == NERDTreeTabs ==
 let g:nerdtree_tabs_open_on_console_startup = 1
@@ -133,13 +138,16 @@ if executable('ag')
   let g:ctrlp_use_caching = 0                 " ag is fast enough that CtrlP doesn't need to cache
 
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag --literal --files-with-matches --nocolor --hidden --filename-pattern "" %s'
+  let g:ctrlp_user_command = 'ag --literal --files-with-matches --nocolor --ignore .git --hidden --filename-pattern "" %s'
 
   if !exists(":Ag")
     command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
     nnoremap \ :Ag<SPACE>
   endif
 endif
+
+" bind K to grep word under cursor
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " ~~ EasyMotion ~~
 let g:EasyMotion_do_mapping = 0
@@ -150,12 +158,34 @@ nmap s <Plug>(easymotion-overwin-f)
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 
+" ~~ Ale ~~
+" let g:ale_ruby_rubocop_executable = 'rubocop'
+let g:airline#extensions#ale#enabled = 1
+
 " ~~ Dispatch ~~
 " Remove iterm from dispatch
 let g:dispatch_handlers =  ['tmux', 'screen', 'windows', 'x11', 'headless']
 
 " == COLOR SCHEME ==
-colorscheme nord                                   " Use the best color scheme
+lua << EOF
+  vim.cmd('colorscheme rose-pine')
+
+  -- Set variant
+  -- @usage 'base' | 'moon' | 'dawn' | 'rose-pine[-moon][-dawn]'
+  vim.g.rose_pine_variant = 'dawn'
+
+  -- Enable italics
+  vim.g.rose_pine_enable_italics = true
+
+  -- Use terminal background
+  -- Note: Set to true to fix any funky background colors
+  vim.g.rose_pine_disable_background = true
+
+  -- Switch to specified variant
+  require('rose-pine.functions').select_variant('dawn')
+EOF
+
+" colorscheme nord                                   " Use the best color scheme
 set guifont=Fira\ Mono\ for\ Powerline:h11            " Use a better fontface
 " set guifont=Source\ Code\ Pro\ for\ Powerline:h11     " Use a better fontface
 

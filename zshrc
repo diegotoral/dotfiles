@@ -20,7 +20,7 @@ HYPHEN_INSENSITIVE="true"
 COMPLETION_WAITING_DOTS="true"
 
 # Add some plugins.
-plugins=(git bundler)
+plugins=(asdf git bundler)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -33,4 +33,7 @@ source $HOME/.aliases
 source $HOME/.functions
 
 PATH=$PATH:$HOME/.bin
+
+# Adjust directory colors for Rosé Pine theme.
+LS_COLORS="di=31"
 

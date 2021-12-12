@@ -43,13 +43,14 @@ return require('packer').startup(function()
     }
   }
 
-
   use {
-    'nvim-neorg/neorg',
-    requires = { 'nvim-lua/plenary.nvim' }
+    'lewis6991/gitsigns.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim'
+    }
   }
 
-  use { 'Pocco81/TrueZen.nvim' }
+  use { 'vim-crystal/vim-crystal' }
   use { 'terrortylor/nvim-comment' }
   use { 'rmagatti/auto-session' }
   use { 'wakatime/vim-wakatime' }
@@ -65,4 +66,3 @@ return require('packer').startup(function()
   use { 'andymass/vim-matchup' }
   use { 'editorconfig/editorconfig-vim' }
 end)
-
