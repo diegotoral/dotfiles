@@ -12,9 +12,23 @@ vim.cmd('filetype plugin indent on')
 g.mapleader = ' '
 
 -- Color scheme --
-g.rose_pine_variant = 'dawn'
-g.rose_pine_enable_italics = true
-g.rose_pine_disable_background = true
+require('rose-pine').setup({
+  dark_variant = 'moon',
+  bold_vert_split = false,
+  dim_nc_background = false,
+  disable_background = false,
+  disable_float_background = false,
+  disable_italics = false,
+
+  -- Change specific vim highlight groups
+  highlight_groups = {
+    ColorColumn = { bg = 'rose' }
+  }
+})
+
+-- g.rose_pine_variant = 'dawn'
+-- g.rose_pine_enable_italics = true
+-- g.rose_pine_disable_background = true
 vim.cmd('colorscheme rose-pine')
 
 -- General Configuration --
@@ -31,7 +45,7 @@ opt.fileformats = {'unix', 'dos', 'mac'}	      -- File formats for happiness
 opt.visualbell = true                           -- For more silent vim
 opt.autoindent = true                           -- Saves a few keystrokes
 opt.splitbelow = true                           -- Open splits to bottom
-opt.splitright = true                           -- Open splits to right 
+opt.splitright = true                           -- Open splits to right
 opt.relativenumber = true                       -- Set line number relative to current one
 opt.ignorecase = true                           -- Ignore case when typing commands
 opt.smarttab = true                             -- Do not ignore case with capitals

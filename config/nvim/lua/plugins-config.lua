@@ -1,5 +1,7 @@
 local g = vim.g
 
+require('nvim-rspec').setup()
+
 require('gitsigns').setup()
 
 require('nvim-tree').setup {
@@ -12,28 +14,19 @@ require('nvim_comment').setup{
   line_mapping = '<leader>cc'
 }
 
-local parser_configs = require('nvim-treesitter.parsers').get_parser_configs()
-
-parser_configs.norg = {
-  install_info = {
-    url = "https://github.com/nvim-neorg/tree-sitter-norg",
-    files = { "src/parser.c", "src/scanner.cc" },
-    branch = "main"
-  },
-}
-
 require('nvim-treesitter.configs').setup {
-  ensure_installed = 'maintained',
+  ensure_installed = { 'javascript', 'vue', 'ruby', 'lua' },
   highlight = { enable = true },
-  matchup = { enable = true }
+  matchup = { enable = true },
+  playground = { enable = true }
 }
 
 local cmp = require('cmp')
 local luasnip = require('luasnip')
 
 -- Add additional capabilities supported by nvim-cmp
--- local capabilities = vim.lsp.protocol.make_client_capabilities()
--- capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
@@ -52,8 +45,13 @@ cmp.setup {
 
   sources = {
     { name = 'buffer' },
+    { name = 'nvim_lsp' },
     { name = 'treesitter' },
     { name = 'luasnip' }
+  },
+
+  window = {
+    ompletion = cmp.config.window.bordered()
   },
 
   mapping = {
@@ -62,7 +60,7 @@ cmp.setup {
     ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
+      elseif luasnip.expand_or_locally_jumpable() then
         luasnip.expand_or_jump()
       elseif has_words_before() then
         cmp.complete()
@@ -89,14 +87,6 @@ require('lualine').setup {
 }
 
 require('auto-session').setup {
-  pre_save_cmds = {'NvimTreeClose'}
+  pre_save_cmds = { 'NvimTreeClose' }
 }
-
--- local lspconfig = require('lspconfig')
--- local lspcontainers = require('lspcontainers')
---
--- lspconfig.solargraph.setup({
---   cmd = lspcontainers.command('solargraph'),
---   capabilities = capabilities
--- })
 

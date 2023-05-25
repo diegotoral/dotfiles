@@ -5,3 +5,4 @@ require('plugins')
 require('plugins-config')
 require('keybindings')
 require('snippets')
+

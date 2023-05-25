@@ -4,6 +4,9 @@ return require('packer').startup(function()
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
+  use 'tpope/vim-endwise'
+  use 'christoomey/vim-tmux-navigator'
+
   use { 'rose-pine/neovim', as = 'rose-pine' }
 
   use {
@@ -20,6 +23,8 @@ return require('packer').startup(function()
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate'
   }
+
+  use 'nvim-treesitter/playground'
 
   use {
     'nvim-telescope/telescope.nvim',
@@ -39,7 +44,8 @@ return require('packer').startup(function()
     'hrsh7th/nvim-cmp',
     requires = {
       'hrsh7th/cmp-buffer',
-      'ray-x/cmp-treesitter'
+      'ray-x/cmp-treesitter',
+      'hrsh7th/cmp-nvim-lsp'
     }
   }
 
@@ -49,6 +55,24 @@ return require('packer').startup(function()
       'nvim-lua/plenary.nvim'
     }
   }
+  -- Lua
+  use {
+    'folke/trouble.nvim',
+    requires = 'kyazdani42/nvim-web-devicons',
+    config = function()
+      require('trouble').setup()
+    end
+  }
+
+  use {
+    'andymass/vim-matchup',
+    setup = function()
+      vim.g.matchup_matchparen_offscreen = { method = 'popup' }
+    end
+  }
+
+  use 'neovim/nvim-lspconfig'
+  use 'lspcontainers/lspcontainers.nvim'
 
   use { 'vim-crystal/vim-crystal' }
   use { 'terrortylor/nvim-comment' }
@@ -63,6 +87,7 @@ return require('packer').startup(function()
   use { 'kana/vim-textobj-user' }
   use { 'nelstrom/vim-textobj-rubyblock' }
   use { 'amadeus/vim-mjml' }
-  use { 'andymass/vim-matchup' }
   use { 'editorconfig/editorconfig-vim' }
+
+  use { '~/code/nvim-rspec' }
 end)
