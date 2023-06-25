@@ -88,6 +88,7 @@ return require('packer').startup(function()
   use { 'nelstrom/vim-textobj-rubyblock' }
   use { 'amadeus/vim-mjml' }
   use { 'editorconfig/editorconfig-vim' }
+  use { 'AndrewRadev/splitjoin.vim' }
 
   use { '~/code/nvim-rspec' }
 end)
