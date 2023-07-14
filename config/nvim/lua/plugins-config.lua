@@ -44,10 +44,10 @@ cmp.setup {
   },
 
   sources = {
-    { name = 'buffer' },
-    { name = 'nvim_lsp' },
+    { name = 'luasnip' },
     { name = 'treesitter' },
-    { name = 'luasnip' }
+    { name = 'nvim_lsp' },
+    { name = 'buffer' },
   },
 
   window = {
