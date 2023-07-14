@@ -8,7 +8,7 @@
 export UPDATE_ZSH_DAYS=13
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/diegotoral/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="avit"
 
@@ -20,20 +20,27 @@ HYPHEN_INSENSITIVE="true"
 COMPLETION_WAITING_DOTS="true"
 
 # Add some plugins.
-plugins=(asdf git bundler)
+plugins=(asdf git bundler bgnotify zsh-syntax-highlighting zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 # ------------------
 
+# Allow [ or ] whereever you want
+unsetopt nomatch
+
 # Load dotfiles.
 source $HOME/.exports
 source $HOME/.aliases
 source $HOME/.functions
 
+# PATH enchancements.
 PATH=$PATH:$HOME/.bin
+PATH=/opt/homebrew/bin:$PATH
 
 # Adjust directory colors for Rosé Pine theme.
 LS_COLORS="di=31"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
