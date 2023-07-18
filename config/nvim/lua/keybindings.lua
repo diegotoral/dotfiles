@@ -1,6 +1,11 @@
 local cmd = vim.cmd
 local map = vim.api.nvim_set_keymap
 
+-- Tab movements
+cmd(':nnoremap tnn :tabnew<cr>')
+cmd(':nnoremap tn :tabNext<cr>')
+cmd(':nnoremap tp :tabprevious<cr>')
+
 -- Make life easier regards to typos
 cmd(':command! W w')
 cmd(':command! Q q')
