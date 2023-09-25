@@ -20,7 +20,14 @@ HYPHEN_INSENSITIVE="true"
 COMPLETION_WAITING_DOTS="true"
 
 # Add some plugins.
-plugins=(asdf git bundler bgnotify zsh-syntax-highlighting zsh-autosuggestions)
+plugins=(
+  asdf
+  git
+  bundler
+  bgnotify
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -43,4 +50,3 @@ PATH=/opt/homebrew/bin:$PATH
 LS_COLORS="di=31"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
