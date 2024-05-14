@@ -18,6 +18,7 @@ require('nvim-treesitter.configs').setup {
   ensure_installed = { 'javascript', 'vue', 'ruby', 'lua' },
   highlight = { enable = true },
   matchup = { enable = true },
+  endwise = { enable = true },
   playground = { enable = true }
 }
 

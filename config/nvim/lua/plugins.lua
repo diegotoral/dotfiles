@@ -17,9 +17,6 @@ return require('packer').startup(function()
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
-  use 'tpope/vim-endwise'
-  use 'christoomey/vim-tmux-navigator'
-
   use { 'rose-pine/neovim', as = 'rose-pine' }
 
   use {
@@ -102,6 +99,8 @@ return require('packer').startup(function()
   use { 'amadeus/vim-mjml' }
   use { 'editorconfig/editorconfig-vim' }
   use { 'AndrewRadev/splitjoin.vim' }
+  use { 'christoomey/vim-tmux-navigator' }
+  use { 'RRethy/nvim-treesitter-endwise' }
 
   use { '~/code/nvim-rspec' }
 
