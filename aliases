@@ -4,3 +4,4 @@ alias st="subl"
 alias cl="clear"
 alias kc="kubectl"
 alias doc="docker-compose"
+alias tx=tmuxinator
