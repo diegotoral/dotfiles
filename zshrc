@@ -24,6 +24,7 @@ plugins=(
   asdf
   git
   bundler
+  tmux
   bgnotify
   zsh-autosuggestions
   zsh-syntax-highlighting
