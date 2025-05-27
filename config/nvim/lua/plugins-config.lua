@@ -15,12 +15,16 @@ require('nvim_comment').setup{
 }
 
 require('nvim-treesitter.configs').setup {
-  ensure_installed = { 'javascript', 'vue', 'ruby', 'lua' },
+  ensure_installed = { 'javascript', 'vue', 'ruby', 'lua', 'sql' },
   highlight = { enable = true },
   matchup = { enable = true },
   endwise = { enable = true },
   playground = { enable = true }
 }
+
+-- require('lspconfig').ruby_lsp.setup{
+--   cmd = { '/Users/diego.toral/.asdf/shims/dip bundle exec ruby-lsp' }
+-- }
 
 local cmp = require('cmp')
 local luasnip = require('luasnip')
@@ -28,8 +32,6 @@ local luasnip = require('luasnip')
 -- Add additional capabilities supported by nvim-cmp
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
-
-require'lspconfig'.ruby_lsp.setup{}
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
@@ -93,3 +95,16 @@ require('auto-session').setup {
   pre_save_cmds = { 'NvimTreeClose' }
 }
 
+require('codecompanion').setup({
+  strategies = {
+    chat= {
+      keymaps = {
+        send = {
+          modes = { n = "<leader>c", i = "<leader>c" },
+        }
+      }
+    }
+  }
+})
+
+vim.cmd([[cab cc CodeCompanion]])
