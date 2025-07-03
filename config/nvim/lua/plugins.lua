@@ -18,6 +18,13 @@ return require('packer').startup(function()
   use 'wbthomason/packer.nvim'
 
   use {
+    'MeanderingProgrammer/render-markdown.nvim',
+    config = function()
+      require('render-markdown').setup()
+    end
+  }
+
+  use {
     "olimorris/codecompanion.nvim",
     config = function()
       require("codecompanion").setup()
