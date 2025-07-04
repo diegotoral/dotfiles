@@ -23,6 +23,12 @@ cmd(':command! Bd bd')
 -- map('n', '<C-L>', '<C-W><C-L>', {})
 -- map('n', '<C-H>', '<C-W><C-H>', {})
 
+vim.keymap.set({ "n", "v" }, "<C-a>", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true })
+vim.keymap.set({ "n", "v" }, "<LocalLeader>a", "<cmd>CodeCompanionChat Toggle<cr>", { noremap = true, silent = true })
+vim.keymap.set("v", "ga", "<cmd>CodeCompanionChat Add<cr>", { noremap = true, silent = true })
+
+vim.cmd([[cab cc CodeCompanion]])
+
 -- Format JSON file with jq
 if has_executable("jq") then
   map("n", "<Leader>fj", "<Cmd>:%! jq<CR>", { desc = "Format JSON (jq)" })
